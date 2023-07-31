@@ -1,0 +1,57 @@
+<h4 class="text-center pt-5">Histórico de Atendimentos</h4>
+
+<mat-tab-group (selectedTabChange)="tabChanged($event)" class="m-5">
+    <mat-tab *ngFor="let tab of datas">
+        <ng-template mat-tab-label>{{tab}}</ng-template>
+        <div class="row my-3 atendimento-row">
+            <div class="col-4 py-3" *ngFor="let contratado of listaPorTab">
+                <div class="card atendimento-card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{contratado.dataCalendarioCorrecao}}</h5>
+                        <h5 class="card-subtitle mb-2 text-muted">{{contratado.tipoService}}</h5>
+                        <h6 class="card-text">Atendimento: das {{contratado.tempoInicio}} às
+                            {{contratado.tempoFim}}</h6>
+                        <p class="card-text">Nome do Pet: {{contratado.nomePet}}</p>
+                        <p class="card-text">Nome do Prestador: {{contratado.nomeProvider}}</p>
+                        <p class="card-text" *ngIf="contratado.cancelado === true">
+                          Motivo do Cancelamento: {{ contratado.motivoCancelamento }}
+                        </p>
+                        <p class="card-text" *ngIf="contratado.status === true">
+                          Comentários sobre serviço: {{ contratado.observacaoAtendimento }}
+                        </p>
+                        <a href="#" class="card-link"
+                            *ngIf="contratado.cancelado === false && contratado.avaliacao === 0" data-toggle="modal"
+                            data-target="#modalAvaliacao" (click)="setModalValue(contratado)">Avaliar
+                            Atendimento</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-tab>
+</mat-tab-group>
+
+<!-- Modal AVALIAR -->
+<div class="modal fade" id="modalAvaliacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nos ajude avaliando o
+                    {{servicoContratadoAvaliado.nomeProvider}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p-rating [(ngModel)]="servicoContratadoAvaliado.avaliacao" (onRate)="handleRate($event)"
+                    (onCancel)="handleCancel($event)">
+                </p-rating> <!-- <span *ngIf="msg" style="margin-left:10px">{{msg}}</span> -->
+                <textarea [(ngModel)]="servicoContratadoAvaliado.comentarioAvaliacao"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button mat-flat-button color="primary" type="button"
+                    (click)="salvarAvaliacaoIndividual(servicoContratadoAvaliado)">Salvar avaliação</button>
+            </div>
+        </div>
+    </div>
+</div>

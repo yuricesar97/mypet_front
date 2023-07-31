@@ -1,0 +1,64 @@
+<div class="container">
+  <h3 class="h3">Área Pet</h3>
+
+  <hr>
+
+  <div class="row" [formGroup]="f">
+    <div class="col">
+
+      <h5 class="h5">Cadastrar novo Pet</h5>
+      <div class="col-md-7 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Nome" [(ngModel)]="varPet.nomePet" name="nome" formControlName="nome" required>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-7 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Raça" [(ngModel)]="varPet.racaPet" name="raca" formControlName="raca" required>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-7 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Espécie" [(ngModel)]="varPet.especiePet" name="especie" formControlName="especie" required>
+        </mat-form-field>
+      </div>
+        <button mat-flat-button color="primary" type="button" (click)="salvarPet(varPet)" [disabled]="!f.valid"
+        title="É preciso preencher todos os campos para criar um pet">Cadastrar</button>
+    </div>
+
+    <div class="col">
+
+      <h5 class="h5">Meus Pets</h5>
+
+      <mat-table [dataSource]="listaPets" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="nomePet">
+          <mat-header-cell *matHeaderCellDef> Nome do Pet </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.nomePet}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="racaPet">
+          <mat-header-cell *matHeaderCellDef> Raça do Pet </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.racaPet}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="especiePet">
+          <mat-header-cell *matHeaderCellDef> Espécie do Pet </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.especiePet}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="excluirPet">
+          <mat-header-cell *matHeaderCellDef> Excluir Pet </mat-header-cell>
+          <mat-cell *matCellDef="let element"><button mat-flat-button color="primary" type="button" (click)="excluirPet(element)">Excluir</button></mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+
+  </div>
+
+</div>

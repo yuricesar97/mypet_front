@@ -1,0 +1,15 @@
+/*Botão Cadastro e Login*/
+.mat-flat-button{
+    margin: 3px;
+}
+
+/*Nome da empresa na Nav-Bar*/
+.navbar-brand{
+    font-family: "Apple Chancery, cursive";
+    font-size: x-large;
+    font-style: italic;
+}
+
+.custom-size {
+    min-height: calc(100% - 183px);
+}

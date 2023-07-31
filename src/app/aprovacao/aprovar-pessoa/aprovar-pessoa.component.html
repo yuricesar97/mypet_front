@@ -1,0 +1,20 @@
+<h4 class="text-center pt-5">Prestadores a serem aprovado/reprovado</h4>
+<div class="row my-3 atendimento-row">
+    <div class="col-4 py-3" *ngFor="let cliente of listaPessoaJuridica">
+        <div class="card atendimento-card" >
+            <div class="card-body">
+                <h5 class="card-title">Nome Completo: {{cliente.razaoSocial}}</h5>
+                <h5 class="card-subtitle mb-2">E-mail: {{cliente.email}}</h5>
+                <h5 class="card-subtitle mb-2 text-muted">CNPJ: {{cliente.cpf}}</h5>
+                <p class="card-subtitle mb-2 text-muted">Telefone: {{cliente.telefoneFixo}}</p>
+                <p class="card-subtitle mb-2 text-muted">Celular: {{cliente.telefoneCelular}}</p>
+                <p>Endereço: {{cliente.logradouro}}, {{cliente.numero}} - {{cliente.bairro}}, {{cliente.cidade}} - {{cliente.estado}}</p>
+                <p *ngIf="cliente.situacaoAprovacao === 'Aprovado' || cliente.situacaoAprovacao === 'Reprovado'">
+                    Status do Prestador: {{cliente.situacaoAprovacao}}
+                </p>
+                <a class="card-link" *ngIf="cliente.situacaoAprovacao === ''" (click)="reprovar(cliente)"><font color="blue">Reprovar</font></a>
+                <a class="card-link" *ngIf="cliente.situacaoAprovacao === ''" (click)="aprovar(cliente)"><font color="blue">Aprovar</font></a>
+            </div>
+        </div>
+    </div>
+</div>

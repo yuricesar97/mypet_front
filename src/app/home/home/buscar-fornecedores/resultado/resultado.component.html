@@ -1,0 +1,79 @@
+<div class="row-title text-center pt-5">
+    <h4>Aqui você pode pesquisar por serviço!</h4>
+</div>
+
+<div class="example-container p-5">
+
+    <div class="row">
+        <div class="col-md-12">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Digite aqui sua pesquisa"
+                [(ngModel)] = "searchText">
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+
+
+<hr class="featurette-divider m-4">
+
+<h4 class="text-center pt-5">Resultados da sua busca</h4>
+
+
+<div class="example-container-teste p-5">
+    <div class="card m-5 w-75 h-45" *ngFor="let forn of forns | filter: searchText">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{forn.fotoPerfil}}" class="card-img" style="border-width: 2px;">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                <p-rating [ngModel]="forn?.mediaAvaliacao" readonly="true" stars="5" [cancel]="false">
+                                </p-rating>
+                            </p>
+                            <p class="font-weight-bold">Nome do Prestador: {{forn.razaoSocial}}</p>
+                            <p>Estado: {{forn.estado}}</p>
+                            <p>Cidade: {{forn.cidade}}</p>
+                            <p>Bairro: {{forn.bairro}} </p>
+                        </div>
+                        <div class="col">
+
+                            <p class="font-weight-bold">Serviços:</p>
+
+                            <span *ngIf="forn.banhoETosa !== null" class="badge badge-success m-1">Banho e
+                                Tosa</span>
+                            <span *ngIf="forn.consulta !== null" class="badge badge-success m-1">Consulta</span>
+                            <span *ngIf="forn.tosaExotica !== null" class="badge badge-success m-1">Tosa
+                                Exótica</span>
+                            <span *ngIf="forn.vacinacao !== null" class="badge badge-success m-1">Vacinação</span>
+                            <span *ngIf="forn.cirurgiaGeral !== null" class="badge badge-success m-1">Cirurgia
+                                Geral</span>
+                            <span *ngIf="forn.hidratacao !== null" class="badge badge-success m-1">Hidratação</span>
+                            <span *ngIf="forn.penteadosArtisticos !== null" class="badge badge-success m-1">Penteados
+                                Artísticos</span>
+                            <span *ngIf="forn.acupuntura !== null" class="badge badge-success m-1">Acupuntura</span>
+                            <span *ngIf="forn.spa !== null" class="badge badge-success m-1">SPA</span>
+                            <span *ngIf="forn.hotel !== null" class="badge badge-success m-1">Hotel</span>
+                            <span *ngIf="forn.creche !== null" class="badge badge-success m-1">Creche</span>
+                            <span *ngIf="forn.taxi !== null" class="badge badge-success m-1">Táxi</span>
+                            <span *ngIf="forn.ensaioFotografico !== null" class="badge badge-success m-1">Ensaio
+                                Fotográfico</span>
+                            <span *ngIf="forn.adestramento !== null"
+                                class="badge badge-success m-1">Adrestramento</span>
+                            <span *ngIf="forn.massagem !== null" class="badge badge-success m-1">Massagem</span>
+                            <span *ngIf="forn.petwalk !== null" class="badge badge-success m-1">Pet Walk</span>
+
+                        </div>
+                    </div>
+                    <div class="row m-3" style="float: right">
+                        <button mat-flat-button color="primary" type="button" (click)="pesquisarDetalhes(forn)">+
+                            Detalhes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

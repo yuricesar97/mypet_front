@@ -1,0 +1,153 @@
+<!-- Page Content -->
+<div class="container">
+
+  <!-- Heading Row -->
+  <div class="row align-items-center my-5">
+    <div class="col-lg-7">
+      <img class="img-fluid rounded mb-4 mb-lg-0" src="{{pessoa?.fotoPerfil}}" alt="">
+    </div>
+    <!-- /.col-lg-8 -->
+    <div class="col-lg-4">
+      <h1 class="font-weight-light">{{pessoa?.razaoSocial}}</h1>
+
+      <label>Média: </label>
+      <p-rating [ngModel]="pessoa?.mediaAvaliacao" readonly="true" stars="5" [cancel]="false"></p-rating><br />
+
+      <p class="font-weight-bold">Serviços:</p>
+
+      <span *ngIf="pessoa?.banhoETosa !== null" class="badge badge-success m-1">Banho e Tosa</span>
+      <span *ngIf="pessoa?.consulta !== null" class="badge badge-success m-1">Consulta</span>
+      <span *ngIf="pessoa?.tosaExotica !== null" class="badge badge-success m-1">Tosa Exótica</span>
+      <span *ngIf="pessoa?.vacinacao !== null" class="badge badge-success m-1">Vacinação</span>
+      <span *ngIf="pessoa?.cirurgiaGeral !== null" class="badge badge-success m-1">Cirurgia Geral</span>
+      <span *ngIf="pessoa?.hidratacao !== null" class="badge badge-success m-1">Hidratação</span>
+      <span *ngIf="pessoa?.penteadosArtisticos !== null" class="badge badge-success m-1">Penteados
+        Artísticos</span>
+      <span *ngIf="pessoa?.acupuntura !== null" class="badge badge-success m-1">Acupuntura</span>
+      <span *ngIf="pessoa?.spa !== null" class="badge badge-success m-1">SPA</span>
+      <span *ngIf="pessoa?.hotel !== null" class="badge badge-success m-1">Hotel</span>
+      <span *ngIf="pessoa?.creche !== null" class="badge badge-success m-1">Creche</span>
+      <span *ngIf="pessoa?.taxi !== null" class="badge badge-success m-1">Táxi</span>
+      <span *ngIf="pessoa?.ensaioFotografico !== null" class="badge badge-success m-1">Ensaio
+        Fotográfico</span>
+      <span *ngIf="pessoa?.adestramento !== null" class="badge badge-success m-1">Adrestramento</span>
+      <span *ngIf="pessoa?.massagem !== null" class="badge badge-success m-1">Massagem</span>
+      <span *ngIf="pessoa?.petwalk !== null" class="badge badge-success m-1">Pet Walk</span>
+
+      <div class="row mt-5" style="float: right">
+        <a><button mat-flat-button color="primary" type="button" class="btn m-2" (click)="voltar()">Voltar</button></a>
+        <a><button mat-flat-button color="primary" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn m-2" type="button"
+            [disabled]="!islogged" title="É preciso estar logado para agendar serviços">Agendar</button></a>
+      </div>
+
+    </div>
+    <!-- /.col-md-4 -->
+  </div>
+  <!-- /.row -->
+
+  <!-- Call to Action Well -->
+  <div class="card text-black bg-secondary my-5 py-4 text-left pl-2">
+    <h5>Sobre a {{pessoa?.razaoSocial}}</h5>
+    <p class="text-black m-0">{{pessoa?.descricaoPetProvider}}</p>
+  </div>
+  <div class="card text-black bg-secondary my-5 py-4 text-left pl-2">
+    <p class="text-black m-0">Endereço: {{pessoa?.logradouro}}, {{pessoa?.numero}} - {{pessoa?.bairro}},
+      {{pessoa?.cidade}}/{{pessoa?.estado}} - CEP: {{pessoa?.cep}}</p>
+  </div>
+
+  <div class="container">
+    <h3>Avaliações da {{pessoa?.razaoSocial}}</h3>
+    <!-- Content Row -->
+    <div class="row">
+      <div class="card-design col-md-12">
+        <div class="col-md-12">
+          <div class="col justify-content-center" *ngFor="let avaliacao of avaliacoes">
+            <div class="card">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img class="card-img">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <label>Nota: </label>
+                    <p-rating [ngModel]="avaliacao.avaliacao" readonly="true" stars="5" [cancel]="false"></p-rating>
+                    <br />
+                    <label class="card-text-nota">Cliente: {{avaliacao.nomeCliente}}</label><br />
+                    <label class="card-text-nota">Comentário: {{avaliacao.comentarioAvaliacao}}</label><br />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+
+</div>
+<!-- /.container -->
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Preencha as informações a seguir para agendar um serviço!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- INÍCIO DO STEPPER-->
+
+        <mat-horizontal-stepper #stepper>
+          <mat-step completed="false">
+            <ng-template matStepLabel>Serviço: </ng-template>
+            <select class="form-control col-md-8" [(ngModel)]="varServicosSelecionados" id="exampleFormControlSelect1">
+              <option *ngFor="let servico of listaServicos">
+                {{servico.name}}
+              </option>
+            </select>
+            <br />
+            <div class="modal-footer">
+              <button mat-button matStepperNext (click)="datasDisponiveisServico()">Próximo</button>
+            </div>
+          </mat-step>
+          <mat-step completed="false">
+            <ng-template matStepLabel>Data: </ng-template>
+            <select class="form-control col-md-8" [(ngModel)]="varDataSelecionada" id="exampleFormControlSelect2">
+              <option *ngFor="let data of listaDatas">
+                {{data}}
+              </option>
+            </select>
+            <br />
+            <div class="modal-footer">
+              <button mat-button matStepperPrevious (click)="limparServicoEData()">Voltar</button>
+              <button mat-button matStepperNext (click)="setTimeHorarios()">Próximo</button>
+            </div>
+          </mat-step>
+          <mat-step completed="false">
+            <ng-template matStepLabel>Horário: </ng-template>
+            <select class="form-control col-md-8" [(ngModel)]="horarioSelecionado"
+              aria-placeholder="Selecione um horário">
+              <option *ngFor="let horario of listaHorarios">
+                {{horario.horarioInicio}} {{horario.horarioFim}}
+              </option>
+              <p ></p>
+            </select>
+            <br />
+            <div class="modal-footer">
+              <button mat-button matStepperPrevious (click)="limparDataEHorario()">Voltar</button>
+              <!-- <button mat-button matStepperNext (click)="pets()">Próximo</button> -->
+              <button mat-button matStepperNext (click)="salvar()">Agendar</button>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </div>
+    </div>
+  </div>
+</div>

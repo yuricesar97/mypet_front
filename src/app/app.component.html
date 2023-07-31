@@ -1,0 +1,140 @@
+<!--NAVBAR-->
+<nav mat-toolbar class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/home/home">MyPet</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+    aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/home/quem-somos">Quem Somos<span class="sr-only">(página atual)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/buscar/petevent">Eventos<span class="sr-only">(página atual)</span></a>
+      </li>
+      <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Eventos</a>
+        </li> -->
+    </ul>
+
+    <ng-container *ngIf="!(authenticated$ | async)">
+      <form class="form-inline my-2 my-lg-0">
+        <button mat-flat-button color="primary" data-toggle="modal" data-target="#modalCadastro"
+          type="button">Cadastre-se</button>
+        <button mat-flat-button color="primary" type="button" (click)="login()">Login</button>
+      </form>
+    </ng-container>
+
+    <ng-container *ngIf="(authenticated$ | async) && (user$ | async)">
+      Seja bem vindo(a), {{ nome }}!
+      <img class="rounded-circle ml-3" src="{{pessoaFoto?.fotoPerfil}}" alt="Generic placeholder image" width="40" height="40">
+      <form class="form-inline my-2 my-lg-0">
+        <!-- <button mat-flat-button color="primary" type="button" (click)="checkProfile()">Área Logada</button> -->
+        <!-- <button mat-flat-button color="primary" type="button" (click)="logout()">Logout</button> -->
+
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="home()">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+          </button>
+
+          <!-- PRESTADOR -->
+
+          <button mat-menu-item *ngIf="perfil === 'SERVICO'" (click)="meuPerfilProvider()">
+            <mat-icon>person</mat-icon>
+            <span>Meu Perfil</span>
+          </button>
+          <button mat-menu-item *ngIf="perfil === 'SERVICO'" (click)="publicarAgendaProvider()">
+            <mat-icon>add</mat-icon>
+            <span>Publicar Agenda</span>
+          </button>
+          <button mat-menu-item *ngIf="perfil === 'SERVICO'" (click)="minhaAgendaProvider()">
+            <mat-icon>calendar_today</mat-icon>
+            <span>Minha Agenda</span>
+          </button>
+          <button mat-menu-item *ngIf="perfil === 'SERVICO'" (click)="historicoPetProvider()">
+            <mat-icon>history</mat-icon>
+            <span>Histórico</span>
+          </button>
+          <button mat-menu-item *ngIf="perfil === 'SERVICO'" (click)="meusEventos()">
+            <mat-icon>calendar_today</mat-icon>
+            <span>Meus Eventos</span>
+          </button>
+          <!-- CLIENTE -->
+          <button mat-menu-item *ngIf="perfil === 'CLIENTE'" (click)="meuPerfilCliente()">
+            <mat-icon>person</mat-icon>
+            <span>Meu Perfil</span>
+          </button>
+          <button mat-menu-item *ngIf="perfil === 'CLIENTE'" (click)="meusPets()">
+            <mat-icon>pets</mat-icon>
+            <span>Meus Pets</span>
+          </button>
+          <button mat-menu-item *ngIf="perfil === 'CLIENTE'" (click)="minhaAgendaCliente()">
+            <mat-icon>calendar_today</mat-icon>
+            <span>Minha Agenda</span>
+          </button>
+          <button mat-menu-item *ngIf="perfil === 'CLIENTE'" (click)="historicoCliente()">
+            <mat-icon>history</mat-icon>
+            <span>Histórico</span>
+          </button>
+          <button mat-menu-item *ngIf="perfil === 'CLIENTE'" (click)="meusEventos()">
+            <mat-icon>calendar_today</mat-icon>
+            <span>Meus Eventos</span>
+          </button>
+          <!-- ADMIN -->
+          <button mat-menu-item *ngIf="perfil === 'ADMIN'" (click)="aprovarPrestador()">
+            <mat-icon>person</mat-icon>
+            <span>Aprovar Prestador</span>
+          </button>
+          <button mat-menu-item *ngIf="perfil === 'ADMIN'" (click)="desabilitarPrestador()">
+            <mat-icon>person_add_disabled</mat-icon>
+            <span>Desabilitar Prestador</span>
+          </button>
+          <!--LOGOUT-->
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </form>
+    </ng-container>
+
+
+  </div>
+</nav>
+
+<!-- Modal Cadastro -->
+<div class="modal fade" id="modalCadastro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Você é: </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <button mat-flat-button color="primary" type="button" (click)="cadastroCliente()">Cliente</button>
+        <button mat-flat-button color="primary" type="button" (click)="cadastroFornecedor()">Prestador</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid custom-size">
+  <router-outlet></router-outlet>
+</div>
+<div class="content">
+</div>
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+  <div class="container">
+    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023 Yuri</p>
+  </div>
+  <!-- /.container -->
+</footer>

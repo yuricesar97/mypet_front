@@ -1,0 +1,91 @@
+
+<div class="container">
+  <h2 align="center"> Alterar Prestador</h2>
+  <div class="form-row align-items-center" >
+      <div class="form-group col-md-3">
+          <label for="razaoSocial">Razão Social: </label>
+          <input type="text" class="form-control" [(ngModel)]="pessoaJuridica.razaoSocial" pInputText placeholder="Ex: Clínica pet feliz" required>
+      </div>
+
+      <div class="form-group col-md-2">
+          <label for="cpf">CNPJ:</label>
+          <input type="text" class="form-control" [(ngModel)]="pessoaJuridica.cpf" required="required" pInputText placeholder="CNPJ">
+
+      </div>
+      <div class="form-group col-md-2">
+          <label for="email">E-mail:</label>
+          <input type="email" class="form-control" [(ngModel)]="pessoaJuridica.email" pInputText placeholder=" E-mail">
+      </div>
+  </div>
+  <div class="form-row align-items-center">
+      <div class="form-group col-md-2">
+          <label for="telefoneFixo">Telefone Fixo:</label>
+          <input type="text" class="form-control" [(ngModel)]="pessoaJuridica.telefoneFixo" pInputText placeholder=" Telefone Fixo">
+      </div>
+      <div class="form-group col-md-2">
+          <label for="telefoneCelular">Celular:</label>
+          <input type="text" class="form-control" [(ngModel)]="pessoaJuridica.telefoneCelular" required="required" pInputText placeholder=" Telefone Celular">
+      </div>
+  </div>
+
+  <div class="form-row align-items-center">
+      <div class="form-group col-md-4">
+          <label for="logradouro">Endereço:</label>
+          <input type="text" class="form-control" [(ngModel)]="pessoaJuridica.logradouro" required="required" pInputText placeholder=" Endereço">
+      </div>
+
+      <div class="form-group col-md-1">
+          <label for="numero">Nº:</label>
+          <input type="text" class="form-control" [(ngModel)]="pessoaJuridica.numero" required="required" pInputText placeholder=" Número">
+      </div>
+
+      <div class="form-group col-md-2">
+          <label for="complemento">Complemento:</label>
+          <input type="text" class="form-control" [(ngModel)]="pessoaJuridica.complemento" required="required" pInputText placeholder=" Complemento">
+      </div>
+      <div class="form-group col-md-2">
+          <label for="bairro">Bairro:</label>
+          <input type="text" class="form-control" [(ngModel)]="pessoaJuridica.bairro" required="required" pInputText placeholder=" Bairro">
+      </div>
+  </div>
+  <div class="form-row align-items-center">
+      <div class="form-group col-md-3">
+          <label for="cidade">Cidade: </label>
+          <input type="text" class="form-control" [(ngModel)]="pessoaJuridica.cidade" required="required" pInputText placeholder="Cidade">
+      </div>
+
+      <div class="form-group col-md-3">
+          <label for="estado">Estado:</label>
+          <input type="text" class="form-control" [(ngModel)]="pessoaJuridica.estado" required="required" pInputText placeholder="Estado">
+      </div>
+
+      <div class="form-group col-md-2">
+          <label for="cep">CEP:</label>
+          <input type="text" class="form-control" [(ngModel)]="pessoaJuridica.cep" r equired="required" pInputText placeholder=" CEP">
+      </div>
+  </div>
+
+  <div class="form-check form-check-inline">
+    <div class="container center_div">
+      <div class="form-row align-items-center">
+        <div class="form-group col-auto">
+                  <div id="petShopFile">
+                      <label for="descricaoPetShop">Descrição:</label>
+                          <textarea type="text" class="form-control" [(ngModel)]="pessoaJuridica.descricaoPetProvider"
+                          required="required" pInputTextarea></textarea>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  <!--Fim da escolha dos serviços prestados-->
+
+  <div class="button-cadastro">
+      <button type="button" (click)="alterar()" label="Cadastrar" class="btn btn-outline-light" style="background-color: #f7b733">Cadastrar
+                          </button>
+      <button type="button"label="Voltar" class="btn btn-outline-light" style="background-color: #f7b733">Voltar
+                          </button>
+  </div>
+
+</div>

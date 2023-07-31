@@ -1,0 +1,284 @@
+<div class="container">
+  <form role="form" [formGroup]="formRegister">
+
+    <h3 class="h3 mt-5">Cadastre-se como Prestador de Serviço MyPet ainda hoje!</h3>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-7 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Razão Social" required formControlName="razaoSocial"
+            [errorStateMatcher]="matcher">
+          <mat-error
+            *ngIf="formRegister.get('razaoSocial').hasError  && !formRegister.get('razaoSocial').hasError('required')">
+            Tamanho mínimo 6 caracteres
+          </mat-error>
+          <mat-error *ngIf="formRegister.get('razaoSocial').hasError('required')">
+            Razão Social é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="CPF ou CNPJ" required formControlName="cpf" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formRegister.get('cpf').hasError  && !formRegister.get('cpf').hasError('required')">
+            CPF/CNPJ inválido
+          </mat-error>
+          <mat-error *ngIf="formRegister.get('cpf').hasError('required')">
+            CPJ/CNPJ é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="E-mail" required formControlName="email" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formRegister.get('email').hasError  && !formRegister.get('email').hasError('required')">
+            E-mail inválido
+          </mat-error>
+          <mat-error *ngIf="formRegister.get('email').hasError('required')">
+            E-mail é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Senha" [type]="hide ? 'text' : 'password'" required formControlName="senha"
+            [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formRegister.get('senha').hasError  && !formRegister.get('senha').hasError('required')">
+            Tamanho mínimo 6 dígitos
+          </mat-error>
+          <mat-error *ngIf="formRegister.get('senha').hasError('required')">
+            Senha é <strong>obrigatório</strong>
+          </mat-error>
+
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+
+        </mat-form-field>
+      </div>
+
+
+      <div class="col-md-3 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Confirmar Senha" [type]="hide ? 'text' : 'password'" required
+            formControlName="senha2" [errorStateMatcher]="matcher" (blur)="matchingSenha()">
+          <mat-error *ngIf="formRegister.get('senha2').hasError  && !formRegister.get('senha2').hasError('required')">
+            Tamanho mínimo 6 dígitos
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('senha2').hasError('required')">
+            Confirmar Senha é <strong>obrigatório</strong>
+          </mat-error>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-5 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Endereço" required formControlName="logradouro">
+
+          <mat-error
+            *ngIf="formRegister.get('logradouro').hasError  && !formRegister.get('logradouro').hasError('required')">
+            Endereço inválido
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('logradouro').hasError('required')">
+            Endereço é <strong>obrigatório</strong>
+          </mat-error>
+
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-1 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Nº" required formControlName="numero">
+          <mat-error *ngIf="formRegister.get('numero').hasError  && !formRegister.get('numero').hasError('required')">
+            Número inválido
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('numero').hasError('required')">
+            Número é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-2 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Complemento" formControlName="complemento">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Bairro" required formControlName="bairro">
+
+          <mat-error *ngIf="formRegister.get('bairro').hasError  && !formRegister.get('bairro').hasError('required')">
+            Bairro inválido
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('bairro').hasError('required')">
+            Bairro é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Cidade" required formControlName="cidade">
+
+          <mat-error *ngIf="formRegister.get('cidade').hasError  && !formRegister.get('cidade').hasError('required')">
+            Cidade inválido
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('cidade').hasError('required')">
+            Cidade é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Estado" required formControlName="estado">
+          <mat-error *ngIf="formRegister.get('estado').hasError  && !formRegister.get('estado').hasError('required')">
+            Estado inválido
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('estado').hasError('required')">
+            Estado é <strong>obrigatório</strong>
+          </mat-error>
+
+
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="CEP" required formControlName="cep">
+          <mat-error *ngIf="formRegister.get('cep').hasError  && !formRegister.get('cep').hasError('required')">
+            CEP contém 8 digítos
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('cep').hasError('required')">
+            CEP é <strong>obrigatório</strong>
+          </mat-error>
+
+
+        </mat-form-field>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Telefone Fixo" required formControlName="telefoneFixo">
+          <mat-error
+            *ngIf="formRegister.get('telefoneFixo').hasError  && !formRegister.get('telefoneFixo').hasError('required')">
+            Telefone Fixo contém 10 dígitos com DDD
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('telefoneFixo').hasError('required')">
+            Telefone Fixo é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Telefone Celular" required formControlName="telefoneCelular">
+
+          <mat-error
+            *ngIf="formRegister.get('telefoneCelular').hasError  && !formRegister.get('telefoneCelular').hasError('required')">
+            Telefone Celular contém 11 dígitos com DDD
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('telefoneCelular').hasError('required')">
+            Telefone Celular é <strong>obrigatório</strong>
+          </mat-error>
+
+
+        </mat-form-field>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Descreva aqui mais sobre sua empresa, faça sua propaganda!"
+            formControlName="descricaoPetProvider" cols="300" rows="3"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+  </form>
+  <div class="row">
+
+    <div class="col-md-8 mb-8">
+      <h5>Indique abaixo os serviços que deseja prestar</h5>
+      <hr>
+    </div>
+
+    <div class="col-md-8 mb-8">
+      <mat-checkbox name="banhoETosa" [(ngModel)]="pessoaJuridica.banhoETosa">Banho / Tosa</mat-checkbox><br />
+
+      <mat-checkbox name="consulta" [(ngModel)]="pessoaJuridica.consulta">Consulta</mat-checkbox><br />
+
+      <mat-checkbox name="tosaExotica" [(ngModel)]="pessoaJuridica.tosaExotica">Tosa Exótica</mat-checkbox><br />
+
+      <mat-checkbox name="vacinacao" [(ngModel)]="pessoaJuridica.vacinacao">Vacinação</mat-checkbox><br />
+
+      <mat-checkbox name="cirurgiaGeral" [(ngModel)]="pessoaJuridica.cirurgiaGeral">Cirurgia Geral</mat-checkbox><br />
+
+      <mat-checkbox name="hidratacao" [(ngModel)]="pessoaJuridica.hidratacao">Hidratação</mat-checkbox><br />
+
+      <mat-checkbox name="penteadosArtisticos" [(ngModel)]="pessoaJuridica.penteadosArtisticos">Penteados Artísticos
+      </mat-checkbox><br />
+
+      <mat-checkbox name="acupuntura" [(ngModel)]="pessoaJuridica.acupuntura">Acupuntura</mat-checkbox><br />
+
+      <mat-checkbox name="spa" [(ngModel)]="pessoaJuridica.spa">SPA</mat-checkbox><br />
+
+      <mat-checkbox name="hotel" [(ngModel)]="pessoaJuridica.hotel">Hotel</mat-checkbox><br />
+
+      <mat-checkbox name="creche" [(ngModel)]="pessoaJuridica.creche">Creche</mat-checkbox><br />
+
+      <mat-checkbox name="taxi" [(ngModel)]="pessoaJuridica.taxi">Táxi</mat-checkbox><br />
+
+      <mat-checkbox name="ensaioFotografico" [(ngModel)]="pessoaJuridica.ensaioFotografico">Ensaio Fotográfico
+      </mat-checkbox><br />
+
+      <mat-checkbox name="adestramento" [(ngModel)]="pessoaJuridica.adestramento">Adestramento</mat-checkbox><br />
+
+      <mat-checkbox name="massagem" [(ngModel)]="pessoaJuridica.massagem">Massagem</mat-checkbox><br />
+
+      <mat-checkbox name="petwalk" [(ngModel)]="pessoaJuridica.petwalk">Pet Walk</mat-checkbox><br />
+
+    </div>
+
+  </div>
+
+  <div class="row mt-5 mb-5" style="float: right">
+    <button mat-flat-button color="primary" type="button" (click)="voltar()">Voltar</button>
+    <button mat-flat-button color="primary" type="button" [disabled]="!formRegister.valid"
+      (click)="salvar()">Cadastrar</button>
+  </div>
+
+</div>

@@ -1,0 +1,137 @@
+<div class="row-title">
+  <div class="title-agenda mt-5 mb-2">
+    <h5>Monte aqui a sua agenda!</h5>
+  </div>
+</div>
+
+<div class="example-container p-5">
+  <div class="row" [formGroup]="f">
+    <div class="form-fields">
+      <label class="label m-1">Serviço</label><br />
+      <p-dropdown [options]="lstServicosSelecionados" [(ngModel)]="varServicosSelecionados" optionLabel="name"
+        formControlName="servicos" [showClear]="true"></p-dropdown>
+    </div>
+
+    <div class="form-fields">
+      <label class="label m-1">Data</label><br />
+      <p-calendar [(ngModel)]="varCriacaoAgendaProvider.dataCalendario" [minDate]="minimumDate" [locale]="br"
+        formControlName="data" dateFormat="dd/mm/yy" [disabledDates]="invalidDates" [disabledDays]="[0,6]"
+        placeholder="Selecione a data">
+      </p-calendar>
+    </div>
+
+    <div class="form-fields">
+      <label class="label m-1">Hora de início</label><br />
+      <p-calendar [(ngModel)]="varCriacaoAgendaProvider.tempoInicio" [timeOnly]="true" formControlName="horaInicio"
+        placeholder={{varCriacaoAgendaProvider.tempoInicio}}></p-calendar>
+    </div>
+
+    <div class="form-fields">
+      <label class="label m-1">Hora de fim</label><br />
+      <p-calendar [(ngModel)]="varCriacaoAgendaProvider.tempoFim" [timeOnly]="true" formControlName="horaFim"
+        placeholder={{varCriacaoAgendaProvider.tempoFim}}></p-calendar>
+    </div>
+
+    <div class="form-fields">
+      <label class="label mt-3"></label><br />
+      <button mat-flat-button color="primary" class="label m-2" type="button" data-toggle="modal"
+        data-target=".bd-example-modal-lg" (click)="addToList(varCriacaoAgendaProvider)" [disabled]="!f.valid"
+        title="É preciso preencher todos os campos para criar um agendamento">
+        Agendar
+      </button>
+    </div>
+  </div>
+</div>
+
+<hr class="featurette-divider m-5">
+
+<div class="row-title">
+  <h5>Horários já disponíveis para agendamento</h5>
+</div>
+
+<div class="row">
+  <div class="row-table">
+    <p-table #tt [responsive]="true" [value]="lstCriacaoAgendaProviderAgendadoNaoContratados" [paginator]="true"
+      [rows]="5"
+      [globalFilterFields]="['dataCalendarioCorrecao','siglaDia','tempoInicioCorrecao','tempoFimCorrecao','dataCalendarioCorrecao','servicoEscolhido']">
+      <ng-template pTemplate="caption">
+        <div style="text-align: center" class="ng-star-inserted">
+          <i class="fas fa-search-plus"></i>
+          <input type="text" pInputText size="50" placeholder="Global Filter"
+            (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+        </div>
+      </ng-template>
+
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Dia</th>
+          <th>Dia da semana</th>
+          <th>Inicio</th>
+          <th>Fim</th>
+          <th>Serviço escolhido</th>
+          <th>Replicar data</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-varCriacaoAgendaProvider>
+        <tr class="table-nao-contratados">
+          <td>{{varCriacaoAgendaProvider.dataCalendarioCorrecao}}</td>
+          <td>{{varCriacaoAgendaProvider.siglaDia}}</td>
+          <td>{{varCriacaoAgendaProvider.tempoInicioCorrecao}}</td>
+          <td>{{varCriacaoAgendaProvider.tempoFimCorrecao}}</td>
+          <td>{{varCriacaoAgendaProvider.servicoEscolhido}}</td>
+          <td class="ui-g-12">
+            <p-checkbox name="group1" value="Replicar" label="" [(ngModel)]="varCriacaoAgendaProvider.replicar"
+              inputId="replicar"></p-checkbox>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <div class="button-save m-4">
+      <button mat-flat-button color="primary" type="button"
+        (click)="addDays(lstCriacaoAgendaProviderAgendadoNaoContratados)">Replicar para uma semana</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirma as informações selecionadas?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p-table [value]="lstCriacaoAgendaProvider">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Dia</th>
+              <th>Dia da semana</th>
+              <th>Inicio</th>
+              <th>Fim</th>
+              <th>Serviço escolhido</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-varCriacaoAgendaProvider>
+            <tr>
+              <td>{{varCriacaoAgendaProvider.dataCalendarioCorrecao}}</td>
+              <td>{{varCriacaoAgendaProvider.siglaDia}}</td>
+              <td>{{varCriacaoAgendaProvider.tempoInicioCorrecao}}</td>
+              <td>{{varCriacaoAgendaProvider.tempoFimCorrecao}}</td>
+              <td>{{varCriacaoAgendaProvider.servicoEscolhido}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div class="modal-footer">
+        <button mat-flat-button color="primary" type="button" data-dismiss="modal">Cancelar</button>
+        <button mat-flat-button color="primary" type="button"
+          (click)="salvarAgendaProviderTeste(varCriacaoAgendaProviderToAttachCopy)">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>

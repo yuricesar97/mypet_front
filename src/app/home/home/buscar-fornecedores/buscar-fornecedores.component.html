@@ -1,0 +1,33 @@
+<hr class="featurette-divider m-5">
+
+  <div class="row-title">
+    <h5>Pesquise aqui os prestadores que procura!</h5>
+  </div>
+
+<div class="example-container p-5">
+
+  <div class="row">
+      
+
+      <mat-form-field>
+        <input matInput placeholder="Prestador" [(ngModel)]="forn.razaoSocial" class="mat-form">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Bairro" [(ngModel)]="forn.bairro" class="mat-form">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Cidade" [(ngModel)]="forn.cidade" class="mat-form">
+      </mat-form-field>
+    
+    <div class="mat-form">
+        <button mat-flat-button color="primary" (click)="pesquisarFornecedor()">Pesquisar</button>
+    </div>
+  </div>
+</div>
+
+    <hr class="featurette-divider m-5">
+  <app-cards></app-cards>
+  
+ <hr class="featurette-divider  m-5">

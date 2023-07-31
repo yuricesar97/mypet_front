@@ -1,0 +1,35 @@
+<h3 class="first">Horários disponíveis deste provider</h3>
+  <p-table #tt [value]="lstCriacaoAgendaProvider" [paginator] = "true" [rows] = "7" [globalFilterFields]="['tempoInicioCorrecao','tempoFimCorrecao','siglaDia','dataCalendarioCorrecao','servicoEscolhido']">
+ <ng-template pTemplate="caption">
+        <div style="text-align: center" class="ng-star-inserted">
+        <i class="fas fa-search-plus"></i>
+            <input type="text" pInputText size="50" placeholder="Global Filter" (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+        </div>
+    </ng-template>
+
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Tempo início</th>
+            <th>Tempo fim</th>
+            <th>Dia da semana</th>
+            <th>Dia</th>
+            <th>Serviço</th>
+            <th>Clique para contratar este horário</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-varCriacaoAgendaProvider>
+        <tr>
+            <td>{{varCriacaoAgendaProvider.tempoInicioCorrecao}}</td>
+            <td>{{varCriacaoAgendaProvider.tempoFimCorrecao}}</td>
+            <td>{{varCriacaoAgendaProvider.siglaDia}}</td>
+            <td>{{varCriacaoAgendaProvider.dataCalendarioCorrecao}}</td>
+            <td>{{varCriacaoAgendaProvider.servicoEscolhido}}</td>
+            <td><p-toggleButton [(ngModel)]="varCriacaoAgendaProvider.selecaoHorario"
+              onLabel="Selecionado" offLabel="X" onIcon="pi; pi-check" offIcon="pi pi-times"
+              [style]="{'width':'150px'}"></p-toggleButton></td>
+            </tr>
+          </ng-template>
+        </p-table>
+
+        <button (click)="salvaAgendaProviderContratado(lstCriacaoAgendaProvider)" label="Listas">Agendar</button>

@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .pet-image-home {
+    background-image: url("https://cdn.pixabay.com/photo/2015/07/09/19/32/dog-838281_1280.jpg");
+    background-color: #cccccc;
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+  }
+  
+  .pet-text-home {
+    text-align: center;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #397880;
+    font-style: italic;
+  }
+  
+  .btn-secondary{
+    background-color: #5CC1CC;
+  }
+  
+  .flex {
+      display: flex;
+  }
+  
+  .container {
+      max-width: 300px;
+      margin: 0 auto;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .check-servico{
+      background-color: white;
+  }

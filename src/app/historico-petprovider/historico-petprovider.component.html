@@ -1,0 +1,33 @@
+<h4 class="text-center pt-5">Histórico de Atendimentos</h4>
+
+<mat-tab-group (selectedTabChange)="tabChanged($event)" class="m-5">
+  <mat-tab *ngFor="let tab of datas">
+    <ng-template mat-tab-label>{{ tab }}</ng-template>
+    <div class="row my-3 atendimento-row">
+      <div class="col-4 py-3" *ngFor="let contratado of listaPorTab">
+        <div class="card atendimento-card">
+          <div class="card-body">
+            <h5 class="card-title">{{ contratado.dataCalendarioCorrecao }}</h5>
+            <h5 class="card-subtitle mb-2 text-muted">
+              {{ contratado.tipoService }}
+            </h5>
+            <h6 class="card-text">
+              Atendimento: das {{ contratado.tempoInicio }} às
+              {{ contratado.tempoFim }}
+            </h6>
+            <p class="card-text">Nome do Pet: {{ contratado.nomePet }}</p>
+            <p class="card-text">
+              Nome do Cliente: {{ contratado.nomeCliente }}
+            </p>
+            <p class="card-text" *ngIf="contratado.cancelado === true">
+              Motivo do Cancelamento: {{ contratado.motivoCancelamento }}
+            </p>
+            <p class="card-text" *ngIf="contratado.status === true">
+              Comentários sobre serviço: {{ contratado.observacaoAtendimento }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

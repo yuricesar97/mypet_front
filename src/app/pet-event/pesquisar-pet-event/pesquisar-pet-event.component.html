@@ -1,0 +1,13 @@
+<h4 class="text-center pt-5">Aqui você encontra os melhores eventos!</h4>
+<div class="row my-3 atendimento-row">
+    <div class="col-4 py-3" *ngFor="let evento of eventos">
+        <div class="card atendimento-card">
+            <div class="card-body">
+              <p class="font-weight-bold">Evento: {{evento.title}}</p>
+              <p>Local: {{evento.local}}</p>
+              <p>Data: {{evento.data}}</p>
+              <p>Descrição: {{evento.description}} </p>
+            </div>
+        </div>
+    </div>
+</div>

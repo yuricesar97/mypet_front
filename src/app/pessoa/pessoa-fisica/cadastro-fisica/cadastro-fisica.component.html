@@ -1,0 +1,249 @@
+<div class="container">
+
+  <form role="form" [formGroup]="formRegister">
+    <h3 class="h3 mt-5">Cadastre-se como Cliente MyPet ainda hoje!</h3>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-5 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Nome Completo" formControlName="nomeCompleto" required>
+
+          <mat-error
+            *ngIf="formRegister.get('nomeCompleto').hasError  && !formRegister.get('nomeCompleto').hasError('required')">
+            Nome Completo inválido
+          </mat-error>
+          <mat-error *ngIf="formRegister.get('nomeCompleto').hasError('required')">
+            Nome Completo é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput [matDatepicker]="picker" placeholder="Data de Nascimento" formControlName="dataNascimento"
+            required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+
+          <mat-error
+            *ngIf="formRegister.get('dataNascimento').hasError  && !formRegister.get('dataNascimento').hasError('required')">
+            Data de Nascimento inválido
+          </mat-error>
+          <mat-error *ngIf="formRegister.get('dataNascimento').hasError('required')">
+            Data de Nascimento é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="CPF" required formControlName="cpf" [errorStateMatcher]="matcher">
+
+          <mat-error *ngIf="formRegister.get('cpf').hasError  && !formRegister.get('cpf').hasError('required')">
+            cpf inválido
+          </mat-error>
+          <mat-error *ngIf="formRegister.get('cpf').hasError('required')">
+            cpf é <strong>obrigatório</strong>
+          </mat-error>
+
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="E-mail" required formControlName="email" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formRegister.get('email').hasError  && !formRegister.get('email').hasError('required')">
+            E-mail inválido
+          </mat-error>
+          <mat-error *ngIf="formRegister.get('email').hasError('required')">
+            E-mail é <strong>obrigatório</strong>
+          </mat-error>
+
+
+        </mat-form-field>
+      </div>
+
+
+      <div class="col-md-3 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Senha" [type]="hide ? 'text' : 'password'" required formControlName="senha"
+            [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formRegister.get('senha').hasError  && !formRegister.get('senha').hasError('required')">
+            Tamanho mínimo 6 dígitos
+          </mat-error>
+          <mat-error *ngIf="formRegister.get('senha').hasError('required')">
+            Senha é <strong>obrigatório</strong>
+          </mat-error>
+
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+
+        </mat-form-field>
+      </div>
+
+
+
+      <div class="col-md-3 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Confirmar Senha" [type]="hide ? 'text' : 'password'" required
+            formControlName="senha2" [errorStateMatcher]="matcher" (blur)="matchingSenha()">
+          <mat-error *ngIf="formRegister.get('senha2').hasError  && !formRegister.get('senha2').hasError('required')">
+            Tamanho mínimo 6 dígitos
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('senha2').hasError('required')">
+            Confirmar Senha é <strong>obrigatório</strong>
+          </mat-error>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Endereço" required formControlName="logradouro">
+
+          <mat-error
+            *ngIf="formRegister.get('logradouro').hasError  && !formRegister.get('logradouro').hasError('required')">
+            Endereço inválido
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('logradouro').hasError('required')">
+            Endereço é <strong>obrigatório</strong>
+          </mat-error>
+
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-1 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Nº" required formControlName="numero">
+
+          <mat-error *ngIf="formRegister.get('numero').hasError  && !formRegister.get('numero').hasError('required')">
+            Número inválido
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('numero').hasError('required')">
+            Número é <strong>obrigatório</strong>
+          </mat-error>
+
+        </mat-form-field>
+
+
+
+      </div>
+
+      <div class="col-md-2 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Complemento" formControlName="complemento">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Bairro" required formControlName="bairro">
+
+          <mat-error *ngIf="formRegister.get('bairro').hasError  && !formRegister.get('bairro').hasError('required')">
+            Bairro inválido
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('bairro').hasError('required')">
+            Bairro é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Cidade" required formControlName="cidade">
+
+          <mat-error *ngIf="formRegister.get('cidade').hasError  && !formRegister.get('cidade').hasError('required')">
+            Cidade inválido
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('bairro').hasError('required')">
+            Cidade é <strong>obrigatório</strong>
+          </mat-error>
+
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Estado" required formControlName="estado">
+          <mat-error *ngIf="formRegister.get('estado').hasError  && !formRegister.get('estado').hasError('required')">
+            Estado inválido
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('estado').hasError('required')">
+            Estado é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="CEP" required formControlName="cep">
+          <mat-error *ngIf="formRegister.get('cep').hasError  && !formRegister.get('cep').hasError('required')">
+            CEP contém 8 digítos
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('cep').hasError('required')">
+            CEP é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+<!-- 
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Telefone Fixo" formControlName="telefoneFixo">
+          <mat-error
+            *ngIf="formRegister.get('telefoneFixo').hasError  && !formRegister.get('telefoneFixo').hasError('required')">
+            Telefone Fixo contém 10 dígitos com DD
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('telefoneFixo').hasError('required')">
+            Telefone Fixo é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Telefone Celular" required formControlName="telefoneCelular">
+
+          <mat-error
+            *ngIf="formRegister.get('telefoneCelular').hasError  && !formRegister.get('telefoneCelular').hasError('required')">
+            Telefone Celular contém 11 dígitos com DD
+          </mat-error>
+
+          <mat-error *ngIf="formRegister.get('telefoneCelular').hasError('required')">
+            Telefone celular é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div> -->
+  </form>
+
+  <div class="row mt-5 mb-5" style="float: right">
+    <button mat-flat-button color="primary" type="button" (click)="voltar()">Voltar</button>
+    <button mat-flat-button color="primary" type="button" [disabled]="!formRegister.valid"
+      (click)="salvar()">Cadastrar</button>
+  </div>
+
+</div>

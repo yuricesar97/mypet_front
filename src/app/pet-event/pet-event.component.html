@@ -1,0 +1,105 @@
+<div class="container">
+  <h3 class="h3 mt-5">Eventos</h3>
+
+  <hr>
+
+  <div class="row" [formGroup]="f">
+    <div class="col">
+
+      <h5 class="h5">Cadastrar novo Evento</h5>
+      <div class="col-md-12 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Nome do Evento" formControlName="title" [(ngModel)]="varEvent.title" name="title" required>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Descrição" formControlName="description" [(ngModel)]="varEvent.description" name="description" required>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Local" formControlName="local" [(ngModel)]="varEvent.local" name="local" required>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Data" formControlName="data" [(ngModel)]="varEvent.data" name="data" type="date" required>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Hora de Início" formControlName="start" [(ngModel)]="varEvent.start" name="start" type="time" required>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Hora de Fim" formControlName="end" [(ngModel)]="varEvent.end" name="end" type="time" required>
+        </mat-form-field>
+      </div>
+
+        <button mat-flat-button class="butt mb-5" color="primary" type="button" style="float: left"
+        [disabled]="!f.valid" title="É preciso preencher todos os campos para criar um evento" (click)="salvarPetEvent(varEvent)">Cadastrar</button>
+    </div>
+
+    <div class="col">
+
+      <h5 class="h5">Eventos cadastrados</h5>
+
+      <mat-table [dataSource]="listaEvents" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef> Nome do Evento </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef> Descrição </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="local">
+          <mat-header-cell *matHeaderCellDef> Local </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.local}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="data">
+          <mat-header-cell *matHeaderCellDef> Data </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.data}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="start">
+          <mat-header-cell *matHeaderCellDef> Horário de Início </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.start}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="end">
+          <mat-header-cell *matHeaderCellDef> Horário de Fim </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.end}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="alterarEvento">
+          <mat-header-cell *matHeaderCellDef> Alterar Evento </mat-header-cell>
+          <mat-cell *matCellDef="let element"><button mat-flat-button color="primary" type="button" data-toggle="modal"
+              data-target="#modalAlterar">Alterar</button></mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="excluirEvento">
+          <mat-header-cell *matHeaderCellDef> Excluir Evento </mat-header-cell>
+          <mat-cell *matCellDef="let element"><button mat-flat-button color="primary" type="button" (click)="excluirEvento(element.id)">Excluir Evento</button></mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+
+  </div>
+
+
+</div>

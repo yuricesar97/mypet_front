@@ -1,0 +1,111 @@
+<div class="container">
+    <h3 class="h3 mt-3">Meu Perfil</h3>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-7 mb-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Nome Completo" [(ngModel)]="pessoaFisica.nomeCompleto" name="nomeCompleto"
+                    required>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <mat-form-field class="example-full-width">
+                <input matInput [matDatepicker]="picker" placeholder="Data de Nascimento"
+                [(ngModel)]="pessoaFisica.dataNascimento" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+
+        <div class="col-md-3 mb-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="CPF" [(ngModel)]="pessoaFisica.cpf" name="cpf" required>
+            </mat-form-field>
+        </div>
+        <div class="col-md-6 mb-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="E-mail" [(ngModel)]="pessoaFisica.email" name="email" disabled>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 mb-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Endereço" required [(ngModel)]="pessoaFisica.logradouro" name="logradouro">
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-1 mb-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Nº" required [(ngModel)]="pessoaFisica.numero" name="numero">
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-2 mb-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Complemento" [(ngModel)]="pessoaFisica.complemento" name="complemento">
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Bairro" required [(ngModel)]="pessoaFisica.bairro" name="bairro">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Cidade" required [(ngModel)]="pessoaFisica.cidade" name="cidade">
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Estado" required [(ngModel)]="pessoaFisica.estado" name="estado">
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="CEP" required [(ngModel)]="pessoaFisica.cep" name="cep">
+            </mat-form-field>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Telefone Fixo" [(ngModel)]="pessoaFisica.telefoneFixo" name="telefoneFixo">
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Telefone Celular" required [(ngModel)]="pessoaFisica.telefoneCelular"
+                    name="telefoneCelular">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="btn btn-default">
+            <input type="file" (change)="selectFile($event)">
+        </label>
+
+        <button mat-flat-button color="primary" type="button" [disabled]="!selectedFiles"
+            (click)="upload()">Upload</button>
+    </div>
+
+    <div class="row mt-5 mb-5" style="float: right">
+        <button mat-flat-button color="primary" type="button" (click)="inativar()">Inativar Conta</button>
+        <button mat-flat-button color="primary" type="button" (click)="alterar()">Alterar Dados</button>
+    </div>
+</div>

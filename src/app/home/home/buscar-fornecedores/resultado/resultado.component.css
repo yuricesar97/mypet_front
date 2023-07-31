@@ -1,0 +1,21 @@
+.mat-flat-button{
+    display: flex;
+    justify-content: end;
+}
+
+.card-text-razao-social{
+    margin-left: 20px;
+}
+
+.card-body {
+    min-height: 20em;
+}
+
+.example-container{
+    display: flex;
+    justify-content: center;
+}
+
+.example-container-teste {
+    margin-left: 15%;
+}

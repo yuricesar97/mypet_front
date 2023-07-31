@@ -1,0 +1,14 @@
+.container {
+	max-width: 170vh;
+	max-height: 200vh;
+    align-items: center;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border-style: solid;
+}
+
+.button-cadastro{
+    display: flex;   
+    flex-flow:row-reverse wrap-reverse;
+    margin-bottom: 20px;
+}

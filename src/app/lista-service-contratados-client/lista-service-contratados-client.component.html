@@ -1,0 +1,42 @@
+<h4 class="text-center pt-5">Minha Agenda</h4>
+
+<mat-tab-group class="m-5">
+  <mat-tab>
+    <div class="row my-3 atendimento-row">
+      <div class="col-4 py-3" *ngFor="let card of lstServiceContratados">
+        <div class="card atendimento-card">
+          <div class="card-body">
+            <h5 class="card-title">{{card.tipoService}}</h5>
+            <h6 class="card-title">{{card.dataCalendarioCorrecao}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Atendimento: das {{card.tempoInicio}} às {{card.tempoFim}}</h6>
+            <a href="#" class="card-link" data-toggle="modal" data-target="#modalCancelar" (click)="enviarIdAgendamento(card)">Cancelar Agendamento</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+<!-- Modal CANCELAR -->
+<div class="modal fade" id="modalCancelar" tabindex="-1" role="dialog" aria-labelledby="modalCancelar"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Motivo do Cancelamento:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <textarea cols="40" rows="5" offLabel="X" onIcon="pi; pi-check" offIcon="pi pi-times"
+          [style]="{'width':'150px'}" [(ngModel)]="observacaoAtendimento.motivoCancelamento"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button mat-flat-button color="primary" type="button" data-dismiss="modal">Fechar</button>
+        <button mat-flat-button color="primary" type="button" (click)="gravarStatusCancelado()">Cancelar
+          Agendamento</button>
+      </div>
+    </div>
+  </div>
+</div>

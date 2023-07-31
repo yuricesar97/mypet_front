@@ -1,0 +1,14 @@
+<h4 class="text-center pt-5">Prestadores MyPet</h4>
+<div class="row my-3 atendimento-row">
+    <div class="col-4 py-3" *ngFor="let cliente of pessoas">
+        <div class="card atendimento-card">
+            <div class="card-body">
+                <h5 class="card-title">Nome Completo: {{cliente.razaoSocial}}</h5>
+                <h5 class="card-subtitle mb-2 text-muted">E-mail: {{cliente.email}}</h5>
+                <h5 class="card-subtitle mb-2 text-muted">CNPJ: {{cliente.cpf}}</h5>
+                <a class="card-link" *ngIf="cliente.active === true" (click)="softDelete(cliente)"><font color="blue">Inativar</font></a>
+                <a class="card-link" *ngIf="cliente.active === false" (click)="reativar(cliente)"><font color="blue">Reativar</font></a>
+            </div>
+        </div>
+    </div>
+</div>

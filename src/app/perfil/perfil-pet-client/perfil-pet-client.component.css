@@ -1,0 +1,50 @@
+.login-card {
+    width: 400px;
+    margin-top: 100px;
+}
+
+
+.example-full-width {
+    width: 100%;
+  }
+
+  .example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+  
+  
+  .line {
+    width: 436px;
+    height: 47px;
+    border-bottom: 1px solid black;
+    position: absolute;
+  }
+  
+  .line-tables {
+    float: left;
+  }
+  
+  .floatLeft { 
+    width: 50%; 
+    float: left;  
+  }
+  .floatRight {
+    width: 50%; 
+    float: right; 
+  }
+  .container { 
+    overflow: hidden; 
+  }
+  
+  .mat-flat-button{
+    margin: 3px;
+  }
+
+  .h3{
+    margin-top: 10px;
+  }

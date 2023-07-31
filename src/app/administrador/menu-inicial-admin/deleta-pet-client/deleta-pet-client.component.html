@@ -1,0 +1,14 @@
+<div class="row my-3 atendimento-row">
+    <div class="col-4 py-3" *ngFor="let petclient of petclients">
+        <div class="card atendimento-card">
+            <div class="card-body">
+                <h5 class="card-title">Nome Completo: {{petclient.nomeCompleto}}</h5>
+                <h5 class="card-subtitle mb-2 text-muted">E-mail: {{petclient.email}}</h5>
+                <h6 class="card-text">Data de Nascimento: {{petclient.dataNascimento}}</h6>
+                <h6 class="card-text">Data de Nascimento: {{petclient.active}}</h6>
+                <a class="card-link" (click)="softDelete(petclient)">Inativar</a>
+                <a href="#" class="card-link" *ngIf="petclient.active === false" >Reativar</a>
+            </div>
+        </div>
+    </div>
+</div>

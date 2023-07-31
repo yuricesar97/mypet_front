@@ -1,0 +1,19 @@
+<h3 class="first">Pet Clients</h3>
+<p-table [value]="petclients">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Data de Nascimento</th>
+            <th>Alterações</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-petclient>
+        <tr>
+            <td>{{petclient.nomeCompleto}}</td>
+            <td>{{petclient.email}}</td>
+            <td>{{petclient.dataNascimento}}</td>
+            <td><button (click)="alterarPetClient(petclient)" label="alterar">Alterar Dados</button></td>
+        </tr>
+    </ng-template>
+</p-table>

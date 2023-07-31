@@ -1,0 +1,90 @@
+<div class="body">
+    <div class="container">
+        <h4 align="center">Alterar Cliente</h4>
+        <div class="form-row align-items-center">
+
+            <div class="form-group col-md-3">
+                <label for="nomeCompleto">Nome Completo:</label>
+                <input type="text" class="form-control" [(ngModel)]="pessoaFisica.nomeCompleto" pInputText required>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="cpf">CPF:</label>
+                <input type="text" class="form-control" [(ngModel)]="pessoaFisica.cpf" required="required" pInputText>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input type="text" class="form-control" [(ngModel)]="pessoaFisica.dataNascimento" pInputText required>
+            </div>
+        </div>
+
+        <div class="form-row align-items-center">
+            <div class="form-group col-md-3">
+                <label for="email">E-mail:</label>
+                <input type="email" class="form-control" [(ngModel)]="pessoaFisica.email" required="required" pInputText>
+            </div>
+
+            <div class="form-group col-auto">
+                <label for="senha">Senha:</label>
+                <input type="password" class="form-control" [(ngModel)]="pessoaFisica.senha" required="required" pInputText>
+            </div>
+            <div class="form-group col-auto">
+                <label for="senha">Confirmar Senha:</label>
+                <input type="password" class="form-control" required="required" pInputText placeholder=" Confirmar Senha">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="telefoneFixo">Telefone Fixo:</label>
+                <input type="text" class="form-control" [(ngModel)]="pessoaFisica.telefoneFixo" pInputText>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="telefoneCelular">Celular:</label>
+                <input type="text" class="form-control" [(ngModel)]="pessoaFisica.telefoneCelular" required="required" pInputText>
+            </div>
+        </div>
+
+        <div class="form-row align-items-center">
+            <div class="form-group col-md-3">
+                <label for="logradouro">Endereço:</label>
+                <input type="text" class="form-control" [(ngModel)]="pessoaFisica.logradouro" required="required" pInputText>
+            </div>
+            <div class="form-group col-md-1">
+                <label for="numero">Nº:</label>
+                <input type="text" class="form-control" [(ngModel)]="pessoaFisica.numero" required="required" pInputText>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="complemento">Complemento:</label>
+                <input type="text" class="form-control" [(ngModel)]="pessoaFisica.complemento" required="required" pInputText>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="bairro">Bairro:</label>
+                <input type="text" class="form-control" [(ngModel)]="pessoaFisica.bairro" required="required" pInputText>
+            </div>
+        </div>
+
+        <div class="form-row align-items-center">
+
+            <div class="form-group colc">
+                <label for="cidade">Cidade</label>
+                <input type="text" class="form-control" [(ngModel)]="pessoaFisica.cidade" required="required" pInputText>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="estado">Estado:</label>
+                <input type="text" class="form-control" [(ngModel)]="pessoaFisica.estado" required="required" pInputText>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="cep">CEP:</label>
+                <input type="text" class="form-control" [(ngModel)]="pessoaFisica.cep" required="required" pInputText>
+            </div>
+        </div>
+        <div class="button-cadastro">
+            <div>
+                <button type="button" (click)="alterar()" label="Alterar" class="btn btn-outline-light" style="background-color: #f7b733">Efetuar alterações
+                        </button>
+            </div>
+            <div>
+                <button type="button" (click)="cancelar()" label="Cancelar" class="btn btn-outline-light" style="background-color: #f7b733">Cancelar
+                        </button>
+            </div>
+        </div>
+    </div>
+</div>
